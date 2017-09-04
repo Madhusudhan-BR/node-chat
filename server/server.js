@@ -21,6 +21,17 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('disconnected from server');
     }); 
+
+    socket.on('createMessage', function(message) {
+        console.log(message);
+    });
+
+    socket.emit('newMessage', {
+        from: 'comp',
+        text: 'from comp',
+        created: '123'
+    });
+
 });
 
 server.listen(port,()=> {

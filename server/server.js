@@ -5,7 +5,7 @@ const http = require('http');
 
 var {generateMessage} = require('./utils/message.js');
 var {generateLocationMessage} = require('./utils/message.js');
-
+var {isRealString} = require('./utils/validation.js');
 var app = express(); 
 var server = http.createServer(app);
 var io = socketio(server);
@@ -44,7 +44,15 @@ io.on('connection', (socket) => {
 
     socket.on('createLocationMessage', function(coords){
         io.emit('newLocationMessage', generateLocationMessage('admin', coords.latitude, coords.longitude))
-    });    
+    });   
+    
+    socket.on('join', function(params,callback){
+            if(!isRealString(params.name) || !isRealString(params.room) ){
+                callback('names are required');
+            } else {
+                callback();
+            }
+    });
 
 });
 

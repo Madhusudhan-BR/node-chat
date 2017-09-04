@@ -23,14 +23,17 @@ io.on('connection', (socket) => {
     }); 
 
     socket.on('createMessage', function(message) {
-        console.log(message);
+        console.log(message); 
+
+        io.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            created: new Date().getTime
+        })
+
     });
 
-    socket.emit('newMessage', {
-        from: 'comp',
-        text: 'from comp',
-        created: '123'
-    });
+    
 
 });
 

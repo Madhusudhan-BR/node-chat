@@ -22,6 +22,18 @@ io.on('connection', (socket) => {
         console.log('disconnected from server');
     }); 
 
+    socket.emit('newUser', {
+        from: 'admin', 
+        text: 'welcome from admin',
+        created: new Date().getTime
+    });
+
+    socket.broadcast.emit('newUser', {
+        from: 'admin',
+        text : 'new user joined',
+        created: new Date().getTime
+    });
+
     socket.on('createMessage', function(message) {
         console.log(message); 
 

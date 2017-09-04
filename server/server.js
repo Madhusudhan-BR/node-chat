@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
             created: new Date().getTime
         }); 
 
-        callback('received message');
+        callback();
 
     });
 

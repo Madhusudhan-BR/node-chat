@@ -2,19 +2,31 @@
 <head>
     <title> Home </title>
     
-    
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <meta charset="utf-8">
 </head> 
-    <body>
-        <p> Welcome to the worlds best node.js chat app! </p>
-        <hr>
-        <ol id="messages">
+    <body class="chat">
+        
 
-        </ol>
-        <form id="message"> 
-            <input name="msg" placeholder="Enter a message here" type="text"></input>
-            <button type="submit">Send</button>
-        </form>
+        <div class="chat__sidebar">
+            <h3>Active Users</h3>
+            <div id="users"></div>
+        </div>
+
+        <div class="chat__main">
+                <ol id="messages" class="chat__messages"></ol>
+
+                <div class="chat__footer">
+                        <form id="message"> 
+                                <input name="msg" placeholder="Enter a message here" type="text" autofocus autocomplete="off"></input>
+                                <button type="submit">Send</button>
+                         </form>
+                </div>
+
+                
+        </div>
+
+        
         <button id="locButton">Send Location</button>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

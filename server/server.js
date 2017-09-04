@@ -28,14 +28,16 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newUser', generateMessage('admin', 'new user joined app'));
 
-    socket.on('createMessage', function(message) {
+    socket.on('createMessage', function(message, callback) {
         console.log(message); 
 
         io.emit('newMessage', {
             from: message.from,
             text: message.text,
             created: new Date().getTime
-        })
+        }); 
+
+        callback('received message');
 
     });
 

@@ -10,11 +10,32 @@ socket.on('disconnect', function()  {
 }); 
 
 socket.on('newMessage', function(msg){
-    console.log(msg);
+    console.log(msg); 
+
+
+    var li = $('<li></li>');
+    li.text(`${msg.from} : ${msg.text}`);
+
+
+    $('#messages').append(li);
+
+
 });
 
 
 
 socket.on('newUser', function(msg){
     console.log(msg);
+});
+
+
+$('#message').on('submit', function(e) {
+    e.preventDefault();
+    var text = $('[name=msg]').val();
+    socket.emit('createMessage', {
+        from: 'me',
+        text: text
+    }, function(){
+        
+    });
 });

@@ -1,12 +1,22 @@
 <html>
 <head>
     <title> Home </title>
+    
+    
     <meta charset="utf-8">
 </head> 
     <body>
-        heloooooo 
+        <p> Welcome to the worlds best node.js chat app! </p>
+        <hr>
+        <ol id="messages">
 
+        </ol>
+        <form id="message"> 
+            <input name="msg" placeholder="Enter a message here" type="text"></input>
+            <button type="submit">Send</button>
+        </form>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/js/index.js"></script>
     </body>
 </html>

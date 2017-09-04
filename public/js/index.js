@@ -11,10 +11,10 @@ socket.on('disconnect', function()  {
 
 socket.on('newMessage', function(msg){
     console.log(msg); 
-
+    var formattedTime = moment(msg.created).format('h:mm a');
 
     var li = $('<li></li>');
-    li.text(`${msg.from} : ${msg.text}`);
+    li.text(`${msg.from} ${formattedTime} : ${msg.text}`);
 
 
     $('#messages').append(li);
@@ -26,6 +26,11 @@ socket.on('newMessage', function(msg){
 
 socket.on('newUser', function(msg){
     console.log(msg);
+    var li = $('<li></li>');
+    li.text(`${msg.from} : ${msg.text}`);
+
+
+    $('#messages').append(li);
 });
 
 
@@ -42,8 +47,9 @@ $('#message').on('submit', function(e) {
 
 socket.on('newLocationMessage', function(msg) {
     var li = $('<li></li>');
+    var formattedTime = moment(msg.created).format('h:mm a');
     var a = $('<a target="_blank"> My current location is </a>');
-    li.text(`${msg.from}`); 
+    li.text(`${msg.from} ${formattedTime}`); 
     a.attr('href', msg.url);
     li.append(a); 
     $('#messages').append(li);
